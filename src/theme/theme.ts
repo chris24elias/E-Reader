@@ -16,7 +16,25 @@ const theme = extendTheme({
   components: {
     Text: {
       defaultProps: {},
-      variants: {},
+      variants: {
+        header: {
+          fontWeight: "bold",
+          fontSize: 34,
+          lineHeight: 42.5,
+          // color: "black",
+        },
+        subheader: {
+          fontWeight: "600",
+          fontSize: 24,
+          lineHeight: 36,
+          // color: "black",
+        },
+        body: {
+          fontSize: 16,
+          lineHeight: 24,
+          // color: "black",
+        },
+      },
     },
   },
 });
