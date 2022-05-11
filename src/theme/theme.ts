@@ -1,16 +1,25 @@
 import { extendTheme } from "native-base";
 
 const Spacing = {
-  xxxs: 2,
-  xxs: 4,
-  xs: 8,
-  s: 12,
-  m: 14,
-  l: 16,
+  xs: 4,
+  s: 8,
+  m: 16,
+  l: 24,
+  xl: 40,
+};
+
+const Colors = {
+  mainBackground: "#F0F2F3",
+  cardBackground: "#dcdde1",
+  primary: "#3E4685",
+  secondary: "#169BD6",
+  cardPrimaryBackground: "#D2D5Df",
+  black: "#0B0B0B",
+  white: "#F0F2F3",
 };
 
 const theme = extendTheme({
-  // colors: Colors,
+  colors: Colors,
   space: Spacing,
 
   components: {

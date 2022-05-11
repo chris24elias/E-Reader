@@ -1,3 +1,4 @@
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
 import { Box, Icon, Text } from "native-base";
 import React from "react";
@@ -32,10 +33,10 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   const renderLeft = () => {
     if (showBack) {
       return (
-        <Icon
+        <Feather
           name="chevron-left"
           // type="Feather"
-          color={backIconColor || "white"}
+          color={backIconColor || "#ffffff"}
           onPress={() => {
             if (onBackPress) {
               onBackPress();
@@ -49,7 +50,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
     }
     if (showMenu) {
       return (
-        <Icon
+        <MaterialIcons
           name="menu"
           // type="MaterialIcons"
           size={35}

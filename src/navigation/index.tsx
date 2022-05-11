@@ -54,7 +54,7 @@ function RootNavigator() {
       <Stack.Screen
         name="BookDetails"
         component={BookDetails}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
