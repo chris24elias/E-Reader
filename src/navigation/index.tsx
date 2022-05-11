@@ -3,6 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
+import { BookDetails } from "@/screens/BookDetails";
 import { Home } from "@/screens/Home";
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -49,6 +50,11 @@ function RootNavigator() {
         name="Root"
         component={BottomTabNavigator}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="BookDetails"
+        component={BookDetails}
+        // options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

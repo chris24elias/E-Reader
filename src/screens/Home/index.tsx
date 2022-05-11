@@ -79,7 +79,7 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
               <BookCover
                 url={item}
                 onPress={() =>
-                  navigation.navigate("bookDetails", {
+                  navigation.navigate("BookDetails", {
                     book: {
                       url: item,
                     },

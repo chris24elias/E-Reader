@@ -18,6 +18,12 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
+  BookDetails: {
+    book: {
+      url: string;
+    };
+    // sharedElementId,
+  };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
