@@ -25,8 +25,9 @@ import AppHeader from "../../components/AppHeader";
 import BookCover from "../../components/BookCover";
 import { useFocusEffect } from "@react-navigation/core";
 import { Box, Icon, Pressable, Text, useTheme } from "native-base";
-import { books } from "@/utils";
+import { books, generateRandomPics } from "@/utils";
 import { MaterialIcons } from "@expo/vector-icons";
+import PageFlipper, { PageFlipperInstance } from "react-native-page-flipper";
 
 interface BookDetailsProps {
   navigation: any;
@@ -55,7 +56,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
       return () => task.cancel();
     }, [])
   );
-
+  const [showBook, setShowBook] = useState(false);
   const active = useSharedValue(0);
   const phase2 = useSharedValue(0);
   const scrollY = useSharedValue<number>(0);
@@ -112,13 +113,20 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
       easing: Easing.inOut(Easing.ease),
       duration: duration,
     });
-    containerHeight.value = withTiming(height, {
-      easing: Easing.inOut(Easing.ease),
-      duration: duration,
-    });
+    containerHeight.value = withTiming(
+      height,
+      {
+        easing: Easing.inOut(Easing.ease),
+        duration: duration,
+      },
+      () => {
+        runOnJS(setShowBook)(true);
+      }
+    );
   };
 
   const closeBook = () => {
+    setShowBook(false);
     const duration = 500;
     active.value = withTiming(0, {
       duration: 400,
@@ -290,7 +298,44 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
           </Pressable>
         </Animated.View>
 
-        {pageLoaded && <Pressable onPress={() => closeBook()} flex={1} />}
+        {showBook && (
+          <Box flex={1}>
+            <Pressable
+              position={"absolute"}
+              zIndex={10000}
+              top={25}
+              left={25}
+              onPress={() => closeBook()}
+            >
+              <Text>back</Text>
+            </Pressable>
+            {/* <BookReader
+              bookPages={[
+                "https://i.picsum.photos/id/960/780/844.jpg?hmac=yi46RPSHaJh3LsOi_4noHPFpgB2pdTiFkfLg0YWANC8",
+                "https://i.picsum.photos/id/179/780/844.jpg?hmac=C934STbwY480q05yogaGe9v6jT5pfFxYKhj0dPpe9OE",
+                "https://i.picsum.photos/id/70/780/844.jpg?hmac=wFZE1FAacjyxQadjJcSNjDZnqeLrWvjf4t1c4g-oZws",
+                "https://i.picsum.photos/id/183/780/844.jpg?hmac=ZKyE-nRYJ4f8UvpjLhWzhNOOpIpqjU0Ve1eNoPpYF-A",
+                "https://i.picsum.photos/id/960/780/844.jpg?hmac=yi46RPSHaJh3LsOi_4noHPFpgB2pdTiFkfLg0YWANC8",
+                "https://i.picsum.photos/id/179/780/844.jpg?hmac=C934STbwY480q05yogaGe9v6jT5pfFxYKhj0dPpe9OE",
+                "https://i.picsum.photos/id/70/780/844.jpg?hmac=wFZE1FAacjyxQadjJcSNjDZnqeLrWvjf4t1c4g-oZws",
+                "https://i.picsum.photos/id/183/780/844.jpg?hmac=ZKyE-nRYJ4f8UvpjLhWzhNOOpIpqjU0Ve1eNoPpYF-A",
+              ]}
+            /> */}
+
+            <PageFlipper
+              data={[
+                "https://i.picsum.photos/id/960/780/844.jpg?hmac=yi46RPSHaJh3LsOi_4noHPFpgB2pdTiFkfLg0YWANC8",
+                "https://i.picsum.photos/id/179/780/844.jpg?hmac=C934STbwY480q05yogaGe9v6jT5pfFxYKhj0dPpe9OE",
+                "https://i.picsum.photos/id/70/780/844.jpg?hmac=wFZE1FAacjyxQadjJcSNjDZnqeLrWvjf4t1c4g-oZws",
+                "https://i.picsum.photos/id/183/780/844.jpg?hmac=ZKyE-nRYJ4f8UvpjLhWzhNOOpIpqjU0Ve1eNoPpYF-A",
+                "https://i.picsum.photos/id/960/780/844.jpg?hmac=yi46RPSHaJh3LsOi_4noHPFpgB2pdTiFkfLg0YWANC8",
+                "https://i.picsum.photos/id/179/780/844.jpg?hmac=C934STbwY480q05yogaGe9v6jT5pfFxYKhj0dPpe9OE",
+                "https://i.picsum.photos/id/70/780/844.jpg?hmac=wFZE1FAacjyxQadjJcSNjDZnqeLrWvjf4t1c4g-oZws",
+                "https://i.picsum.photos/id/183/780/844.jpg?hmac=ZKyE-nRYJ4f8UvpjLhWzhNOOpIpqjU0Ve1eNoPpYF-A",
+              ]}
+            />
+          </Box>
+        )}
       </Animated.View>
     );
   };
