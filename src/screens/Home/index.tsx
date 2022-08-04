@@ -2,21 +2,22 @@ import { RootTabScreenProps } from "@/../types";
 import AppHeader from "@/components/AppHeader";
 import BookCover from "@/components/BookCover";
 import PublisherCover from "@/components/PublisherCover";
+import { SearchBar } from "@/components/SearchBar";
 import { Section } from "@/theme/baseComponents";
 import { books, publishers, topics } from "@/utils";
-import { Box, Icon, Text } from "native-base";
+import { Box, Icon, Text, useTheme, Image } from "native-base";
 import * as React from "react";
 import { FlatList, ScrollView, StyleSheet } from "react-native";
 import Steve from "react-native-steve";
 
 const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
+  const theme = useTheme();
   const renderTopic = ({ item }) => {
     const { emoji, text } = item;
     return (
       <Box
         style={{
           borderWidth: 1,
-          borderColor: "#ecd9d9",
           borderBottomWidth: 2,
           borderRadius: 10,
           paddingHorizontal: 10,
@@ -24,8 +25,9 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "row",
-          backgroundColor: "#FFFFFF",
         }}
+        borderColor="gray.300"
+        backgroundColor="muted.100"
       >
         <Text>{emoji}</Text>
         <Text
@@ -42,17 +44,28 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
   };
 
   return (
-    <Box flex={1}>
-      {/* <AppHeader title="Library" /> */}
-      <ScrollView
-        style={{
-          paddingHorizontal: 10,
-        }}
-      >
-        {/* <SearchBar /> */}
+    <Box flex={1} bg="mainBackground">
+      <AppHeader
+        title="Home"
+        showMenu
+        renderRight={() => (
+          <Box style={{ height: 40, width: 40 }} borderRadius="full">
+            <Image
+              borderRadius="full"
+              source={{ uri: `https://picsum.photos/${200}/${200}` }}
+              style={{ height: "100%", width: "100%" }}
+              alt="profilepic"
+            />
+          </Box>
+        )}
+      />
+      <ScrollView>
+        <SearchBar />
 
-        <Section>
-          <Text variant="subheader">Categories</Text>
+        <Section mb="m">
+          <Text variant="titleLarge" fontWeight="semibold">
+            Categories
+          </Text>
         </Section>
 
         <Steve
@@ -60,18 +73,27 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
           data={topics}
           renderItem={renderTopic}
           itemStyle={{ margin: 5 }}
-          containerStyle={{ marginHorizontal: 5 }}
+          containerStyle={{ marginHorizontal: theme.space.m }}
           keyExtractor={(item) => item.text}
         />
-        <Section>
-          <Text variant="subheader">Popular Books</Text>
-          <Text variant="body">See All</Text>
+        <Section mb="m">
+          <Text variant="titleLarge" fontWeight="semibold">
+            Popular Books
+          </Text>
+          <Text variant="bodyLarge" fontWeight="semibold" color="gray.500">
+            See All
+          </Text>
         </Section>
 
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal
           data={books}
           keyExtractor={(item, index) => String(index)}
+          contentContainerStyle={{
+            paddingLeft: theme.space.m,
+            paddingBottom: 10,
+          }}
           renderItem={({ item, index }) => {
             // const sharedElementId = `item.${item + index}.photo`;
             return (
@@ -92,13 +114,17 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
           }}
         />
 
-        <Section>
+        <Section mb="s">
           <Text variant="subheader">Top Publishers</Text>
         </Section>
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal
           data={publishers}
           keyExtractor={(item, index) => String(index)}
+          contentContainerStyle={{
+            paddingLeft: theme.space.m,
+          }}
           renderItem={({ item }) => {
             return (
               <PublisherCover

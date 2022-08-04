@@ -53,7 +53,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         <MaterialIcons
           name="menu"
           // type="MaterialIcons"
-          size={35}
+          size={24}
         />
       );
     }
@@ -64,7 +64,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   return (
     <Box
       backgroundColor="mainBackground"
-      px="s"
+      px="m"
       py="m"
       style={[
         {
@@ -91,7 +91,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
           {renderTitle ? (
             renderTitle()
           ) : (
-            <Text variant="subheader">{title}</Text>
+            <Text variant="titleMedium">{title}</Text>
           )}
         </Box>
         <Box

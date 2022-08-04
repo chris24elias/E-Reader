@@ -6,7 +6,7 @@ export const Section = ({ ...props }: InterfaceBoxProps) => (
     flexDirection={"row"}
     alignItems="center"
     justifyContent={"space-between"}
-    px="s"
+    px="m"
     mt="l"
     {...props}
   />

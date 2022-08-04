@@ -1,3 +1,4 @@
+import { Pressable } from "native-base";
 import React from "react";
 import { Image, TouchableOpacity } from "react-native";
 
@@ -6,11 +7,11 @@ interface PublisherCoverProps {
   onPress: () => void;
 }
 
-const size = 100;
+const size = 80;
 
 const PublisherCover: React.FC<PublisherCoverProps> = ({ url, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <Pressable shadow="2" onPress={onPress}>
       <Image
         source={{ uri: url }}
         style={{
@@ -18,9 +19,11 @@ const PublisherCover: React.FC<PublisherCoverProps> = ({ url, onPress }) => {
           width: size,
           borderRadius: size / 2,
           margin: 10,
+          borderWidth: 2,
+          borderColor: "white",
         }}
       />
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

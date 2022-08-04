@@ -1,10 +1,10 @@
+import { Box, Pressable, Text } from "native-base";
 import React from "react";
 import {
   StyleSheet,
   Image,
   TouchableOpacity,
   ViewStyle,
-  Pressable,
   StyleProp,
   ImageStyle,
 } from "react-native";
@@ -25,30 +25,37 @@ const BookCover: React.FC<BookCoverProps> = ({
   imageStyle,
 }) => {
   return (
-    <Pressable
-      onPress={onPress}
-      style={[
-        {
-          height: size * 1.5,
-          borderRadius: 12,
-          overflow: "hidden",
-          marginRight: 20,
-          width: size,
-        },
-        containerStyle,
-      ]}
-    >
-      <Image
-        source={{ uri: url }}
+    <Box>
+      <Pressable
+        onPress={onPress}
         style={[
           {
-            height: "100%",
-            width: "100%",
+            height: size * 1.5,
+            borderRadius: 12,
+            // overflow: "hidden",
+            marginRight: 20,
+            width: size,
           },
-          imageStyle,
+          containerStyle,
         ]}
-      />
-    </Pressable>
+        shadow="2"
+      >
+        <Image
+          source={{ uri: url }}
+          style={[
+            {
+              height: "100%",
+              width: "100%",
+              borderRadius: 12,
+            },
+            imageStyle,
+          ]}
+        />
+      </Pressable>
+      <Text mt="s" ml="xs" variant="labelLarge">
+        Book Title
+      </Text>
+    </Box>
   );
 };
 

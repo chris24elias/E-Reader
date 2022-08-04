@@ -9,10 +9,10 @@ export type IBookStatProps = {
 const BookStat = ({ label, value }) => {
   return (
     <Box justifyContent="center" alignItems="center" mx="m">
-      <Text fontWeight="200" fontSize={15} color="white">
+      <Text fontWeight="300" fontSize={12} color="white">
         {label}
       </Text>
-      <Text fontWeight="600" fontSize={19} marginTop="xs" color="white">
+      <Text fontWeight="600" fontSize={16} marginTop="xs" color="white">
         {value}
       </Text>
     </Box>

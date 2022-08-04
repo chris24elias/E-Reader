@@ -36,11 +36,11 @@ const BookInfo: React.FC<IBookInfoProps> = ({
           width={size.width}
           // ref={viewRef}
         />
-        <Box marginTop="xl" justifyContent="center" alignItems="center">
-          <Text fontSize={23} fontWeight="600" textAlign="center" color="white">
+        <Box marginTop="l" justifyContent="center" alignItems="center">
+          <Text fontSize={18} fontWeight="600" textAlign="center" color="white">
             Harry Potter and the Philosopher's Stone
           </Text>
-          <Text marginTop="s" color="white">
+          <Text marginTop="s" variant="bodySmall" color="white">
             by J. K. Rowling
           </Text>
         </Box>
@@ -48,7 +48,7 @@ const BookInfo: React.FC<IBookInfoProps> = ({
           flexDirection="row"
           justifyContent="space-evenly"
           alignItems="center"
-          marginTop="xl"
+          marginTop="l"
         >
           <BookStat label="Rating" value={4.7} />
           <BookStat label="Pages" value={240} />
@@ -67,12 +67,12 @@ const BookInfo: React.FC<IBookInfoProps> = ({
         <Box
           backgroundColor="secondary"
           flexDirection="row"
-          height={65}
           width={"80%"}
           borderRadius={17}
           style={{
+            height: 55,
             position: "absolute",
-            marginTop: "-7.5%",
+            marginTop: -55 / 2,
             alignSelf: "center",
           }}
         >
@@ -83,18 +83,25 @@ const BookInfo: React.FC<IBookInfoProps> = ({
             onPress={() => openBook()}
           >
             <Text color="white" fontWeight="600" fontSize={16}>
-              Read Alone
+              Read Book
             </Text>
           </Pressable>
           <Box height="100%" width={0.5} backgroundColor="white" />
           <Pressable flex={1} justifyContent="center" alignItems="center">
             <Text color="white" fontSize={16} fontWeight="600">
-              Read Together
+              Play Book
             </Text>
           </Pressable>
         </Box>
-        <Text variant="subheader">Description</Text>
-        <Text marginTop="s" variant="body">
+        <Text variant="titleLarge" fontWeight="semibold" marginTop="m">
+          Description
+        </Text>
+        <Text
+          marginTop="s"
+          variant="bodyMedium"
+          color="gray.500"
+          lineHeight="lg"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -103,10 +110,32 @@ const BookInfo: React.FC<IBookInfoProps> = ({
           pariatur.
         </Text>
 
-        <Text variant="subheader" marginTop="l" marginBottom="m">
+        <Text variant="titleLarge" fontWeight="semibold" marginTop="m">
+          Reviews
+        </Text>
+        <Text
+          marginTop="s"
+          variant="bodyMedium"
+          color="gray.500"
+          lineHeight="lg"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur.
+        </Text>
+        <Text
+          variant="titleLarge"
+          fontWeight="semibold"
+          marginTop="m"
+          marginBottom="m"
+        >
           Suggestions
         </Text>
         <FlatList
+          showsHorizontalScrollIndicator={false}
           horizontal
           data={books.filter((b) => b !== book.url)}
           keyExtractor={(item, index) => String(index)}
@@ -118,7 +147,7 @@ const BookInfo: React.FC<IBookInfoProps> = ({
                 url={item}
                 size={height * 0.12}
                 onPress={() =>
-                  navigation.push("bookDetails", {
+                  navigation.push("BookDetails", {
                     book: {
                       url: item,
                     },
@@ -130,17 +159,6 @@ const BookInfo: React.FC<IBookInfoProps> = ({
             );
           }}
         />
-        <Text variant="subheader" marginTop="l" marginBottom="m">
-          Reviews
-        </Text>
-        <Text marginTop="s" variant="body">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </Text>
       </Box>
     </>
   );

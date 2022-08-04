@@ -37,7 +37,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
   const [pageLoaded, setPageLoaded] = useState(false);
   const [showingBook, setShowingBook] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
-  const coverSize = height * 0.2;
+  const coverSize = height * 0.16;
   const topContentSize = height * 0.45;
   const size = {
     height: coverSize * 1.5,
@@ -83,7 +83,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
 
   const renderRight = () => {
     return (
-      <MaterialIcons name="bookmark-outline" color={"#ffffff"} size={24} />
+      <MaterialIcons name="bookmark-outline" color={"#ffffff"} size={34} />
     );
   };
 
@@ -211,7 +211,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
   };
 
   return (
-    <Box flex={1} bg="mainBackground">
+    <Box flex={1} bg="mainBackground" overflow="hidden">
       {renderAnimatedBackdrop()}
       {renderAnimatedBookCover()}
       <Animated.View>
@@ -232,8 +232,8 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
                   headerTitleStyle,
                 ]}
               >
-                <Text variant="subheader" color="white" adjustsFontSizeToFit>
-                  Harry Potter and....
+                <Text variant="titleMedium" color="white" noOfLines={1}>
+                  Harry Potter and the Philosopher's Stone
                 </Text>
               </Animated.View>
             );
@@ -252,6 +252,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
         }}
         contentContainerStyle={{
           backgroundColor: theme.colors.primary,
+          paddingBottom: safeInsets.bottom,
         }}
       >
         <BookInfo {...{ book, openBook, navigation, size, topContentSize }} />
