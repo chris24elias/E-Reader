@@ -1,8 +1,8 @@
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-import { Box, Icon, Text } from "native-base";
+import { Box, Text } from "native-base";
 import React from "react";
-import { StyleSheet, useWindowDimensions, ViewStyle } from "react-native";
+import { useWindowDimensions, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface AppHeaderProps {
@@ -73,12 +73,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         containerStyle,
       ]}
     >
-      <Box
-        flexDirection="row"
-        height={height * 0.06}
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Box flexDirection="row" height={height * 0.06}>
         <Box flex={1} justifyContent="center" alignItems="flex-start">
           {renderLeft()}
         </Box>
@@ -97,7 +92,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         <Box
           flexDirection="row"
           flex={1}
-          justifyContent="center"
+          justifyContent="flex-end"
           alignItems="center"
         >
           {renderRight ? renderRight() : null}
@@ -108,5 +103,3 @@ const AppHeader: React.FC<AppHeaderProps> = ({
 };
 
 export default AppHeader;
-
-const styles = StyleSheet.create({});

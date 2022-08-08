@@ -9,7 +9,7 @@ const SearchBar: React.FC<ISearchBarProps> = ({}) => {
   return (
     <Box
       //   height={"12"}
-      width="90%"
+      width="100%"
       alignSelf="center"
       style={{
         padding: 13,

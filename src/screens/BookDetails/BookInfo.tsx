@@ -29,13 +29,14 @@ const BookInfo: React.FC<IBookInfoProps> = ({
         width={"100%"}
         // zIndex={5}
         backgroundColor="primary"
-        paddingBottom="xl"
+        paddingBottom={{ base: "l", md: "xl" }}
+        justifyContent="flex-end"
       >
-        <Box
+        {/* <Box
           height={size.height}
           width={size.width}
           // ref={viewRef}
-        />
+        /> */}
         <Box marginTop="l" justifyContent="center" alignItems="center">
           <Text fontSize={18} fontWeight="600" textAlign="center" color="white">
             Harry Potter and the Philosopher's Stone

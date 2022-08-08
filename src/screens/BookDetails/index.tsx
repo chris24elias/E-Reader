@@ -18,7 +18,13 @@ import Animated, {
 
 import AppHeader from "../../components/AppHeader";
 import { useFocusEffect } from "@react-navigation/core";
-import { Box, Pressable, Text, useTheme } from "native-base";
+import {
+  Box,
+  Pressable,
+  Text,
+  useBreakpointValue,
+  useTheme,
+} from "native-base";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import PageFlipper, { PageFlipperInstance } from "react-native-page-flipper";
 import { BookInfo } from "./BookInfo";
@@ -45,6 +51,12 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
   };
   const safeInsets = useSafeAreaInsets();
   const theme = useTheme();
+
+  const deviceType = useBreakpointValue({
+    base: "phone",
+    md: "tablet",
+  });
+  const isTablet = deviceType !== "phone";
 
   useFocusEffect(
     React.useCallback(() => {
@@ -124,16 +136,19 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
       duration: 400,
     });
     bookReaderOpacity.value = withTiming(0, { duration: 300 });
-    phase2.value = withTiming(0, {
-      duration: duration,
-    });
 
-    containerWidth.value = withTiming(size.width, {
-      duration: duration,
-    });
-    containerHeight.value = withTiming(size.height, {
-      duration: duration,
-    });
+    setTimeout(() => {
+      phase2.value = withTiming(0, {
+        duration: duration,
+      });
+
+      containerWidth.value = withTiming(size.width, {
+        duration: duration,
+      });
+      containerHeight.value = withTiming(size.height, {
+        duration: duration,
+      });
+    }, 180);
   };
 
   const backdropStyle = useAnimatedStyle(() => {
@@ -153,24 +168,6 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
       opacity: opacity,
     };
   });
-
-  const renderAnimatedBackdrop = () => {
-    return (
-      <Animated.View
-        pointerEvents="none"
-        style={[
-          {
-            backgroundColor: "rgba(0,0,0,0.6)",
-            position: "absolute",
-            height: "100%",
-            width: "100%",
-            zIndex: 5,
-          },
-          backdropStyle,
-        ]}
-      />
-    );
-  };
 
   const renderAnimatedBookCover = () => {
     return (
@@ -205,14 +202,30 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
             size={35}
           />
         </Pressable>
-        <PageFlipper portrait data={BOOK_PAGES} />
+        <PageFlipper
+          portrait
+          // portrait={!isTablet}
+          data={BOOK_PAGES}
+        />
       </AnimatedBookCover>
     );
   };
 
   return (
     <Box flex={1} bg="mainBackground" overflow="hidden">
-      {renderAnimatedBackdrop()}
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          {
+            backgroundColor: "rgba(0,0,0,0.6)",
+            position: "absolute",
+            height: "100%",
+            width: "100%",
+            zIndex: 5,
+          },
+          backdropStyle,
+        ]}
+      />
       {renderAnimatedBookCover()}
       <Animated.View>
         <AppHeader
@@ -256,7 +269,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
         }}
       >
         <BookInfo {...{ book, openBook, navigation, size, topContentSize }} />
-        <Box height="100%" backgroundColor="mainBackground" />
+        <Box height="100%" mt={-1} backgroundColor="mainBackground" />
       </Animated.ScrollView>
     </Box>
   );

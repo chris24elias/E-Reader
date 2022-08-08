@@ -7,11 +7,17 @@ import { Section } from "@/theme/baseComponents";
 import { books, publishers, topics } from "@/utils";
 import { Box, Icon, Text, useTheme, Image } from "native-base";
 import * as React from "react";
-import { FlatList, ScrollView, StyleSheet } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+} from "react-native";
 import Steve from "react-native-steve";
 
 const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
   const theme = useTheme();
+  const { width } = useWindowDimensions();
   const renderTopic = ({ item }) => {
     const { emoji, text } = item;
     return (
@@ -60,7 +66,9 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
         )}
       />
       <ScrollView>
-        <SearchBar />
+        <Box mx="m">
+          <SearchBar />
+        </Box>
 
         <Section mb="m">
           <Text variant="titleLarge" fontWeight="semibold">
@@ -73,7 +81,10 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
           data={topics}
           renderItem={renderTopic}
           itemStyle={{ margin: 5 }}
-          containerStyle={{ marginHorizontal: theme.space.m }}
+          containerStyle={{
+            marginHorizontal: theme.space.m,
+            maxWidth: width * 1.4,
+          }}
           keyExtractor={(item) => item.text}
         />
         <Section mb="m">
