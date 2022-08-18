@@ -7916,10 +7916,10 @@ react-native-linear-gradient@^2.6.2:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz#56598a76832724b2afa7889747635b5c80948f38"
   integrity sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ==
 
-react-native-page-flipper@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-page-flipper/-/react-native-page-flipper-1.0.0.tgz#99be2500ad1e4fe6cbac9ea6f5c0f9f360ac2bfa"
-  integrity sha512-PrKVuIv1gEWWtBD22TuD+1jK4cgnEPMuiZFZax1q4oW/fF4PJLXvA4TiEwwyv9PKYPJJMgoX6cHQQkVIWQYUDg==
+react-native-page-flipper@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-page-flipper/-/react-native-page-flipper-1.0.1.tgz#cabd1a4b006b0e699c5075a3a3d7daaa86b832ff"
+  integrity sha512-LDpmkut4p4Csc5B71XPDwci1HpX3VUqNuT/Uu1fOLMQLlxd6TpPaoIuYA8SUeUd9dFBhTH+fcpPyzUCQ4R2u6A==
 
 react-native-reanimated@^2.9.1:
   version "2.9.1"

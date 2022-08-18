@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import {
+  Dimensions,
   Image,
   InteractionManager,
   Platform,
@@ -28,9 +29,10 @@ import {
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import PageFlipper, { PageFlipperInstance } from "react-native-page-flipper";
 import { BookInfo } from "./BookInfo";
-import { BOOK_PAGES } from "@/utils";
+import { BOOK_PAGES, BOOK_TEXT_PAGES } from "@/utils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AnimatedBookCover } from "./AnimatedBookCover";
+import FastImage from "react-native-fast-image";
 
 interface BookDetailsProps {
   navigation: any;
@@ -205,7 +207,45 @@ const BookDetails: React.FC<BookDetailsProps> = ({ navigation, route }) => {
         <PageFlipper
           portrait
           // portrait={!isTablet}
-          data={BOOK_PAGES}
+          // data={BOOK_PAGES}
+          data={[...BOOK_TEXT_PAGES, ...BOOK_TEXT_PAGES, ...BOOK_TEXT_PAGES]}
+          pageSize={{
+            ...Dimensions.get("window"),
+          }}
+          // pageSize={{
+          //   height: 334,
+          //   width: 210,
+          // }}
+          contentContainerStyle={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+          }}
+          // renderPage={(data) => {
+          //   return (
+          //     <FastImage
+          //       source={{ uri: data }}
+          //       style={{
+          //         height: "100%",
+          //         width: "100%",
+          //         backgroundColor: "white",
+          //       }}
+          //       resizeMode="contain"
+          //     />
+          //   );
+          // }}
+          renderPage={(data) => {
+            return (
+              <Box flex={1} bg="white" pt="24" p="8">
+                <Text>{data}</Text>
+              </Box>
+            );
+          }}
         />
       </AnimatedBookCover>
     );
