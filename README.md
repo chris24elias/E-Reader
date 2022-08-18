@@ -2,6 +2,7 @@
 
 ### Simple E-Reader app with built in reader for interactively flipping pages of a book.
 - Built using Expo, react-native-reanimated, and react-native-gesture-handler
+- The interactive book reader was created by me: [react-native-page-flipper](https://github.com/chris24elias/react-native-page-flipper)
 
 ### Running the app
 
